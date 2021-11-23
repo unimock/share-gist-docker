@@ -1,0 +1,25 @@
+version: '2'
+services:
+  gist:
+    ##################################################
+    # BUILD section
+    ##################################################
+    build:
+      context: ./build
+      dockerfile: Dockerfile
+      args:
+        ALPINE_IMAGE: alpine:3.14
+    ##################################################
+    # RUN section
+    ##################################################
+    image: unimock/share-gist-docker:0.0.0
+    restart: unless-stopped
+    container_name: gist
+    environment:
+      - TIMEZONE=Europe/Berlin
+    volumes:
+      - ./hugo:/httpd/hugo
+volumes:  
+  configure:
+    driver: local
+
