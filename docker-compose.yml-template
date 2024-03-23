@@ -7,12 +7,16 @@ services:
     build:
       context: ./build
       dockerfile: Dockerfile
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
       args:
-        ALPINE_IMAGE: alpine:3.14
+        ALPINE_IMAGE: alpine:edge
     ##################################################
     # RUN section
     ##################################################
-    image: unimock/share-gist-docker:0.0.0
+    image: unimock/share-gist-docker:1.0.0
     restart: unless-stopped
     container_name: gist
     environment:
